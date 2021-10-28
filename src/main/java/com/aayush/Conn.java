@@ -17,12 +17,12 @@ public class Conn {
             e.printStackTrace();
         }
     }
-//test dbConnection    (change )    
+// test dbConnection    (change )    
     //     public static void main( String[] args )
     // {
     //     Conn c = new Conn();
     //     try{
-    //         ResultSet rs = c.s.executeQuery("select policyId from policies");
+    //         ResultSet rs = c.s.executeQuery("select username from user");
     //         while(rs.next()){
     //             System.out.println( rs.getString(1) );
     //         }
