@@ -69,7 +69,7 @@ CardLayoutMgr clm;
 //subItems
        updateTable();
         JLabel head = new JLabel("<html><u>Tournament : "+tourName+"</u></html>");
-        head.setBounds(240,5,400,40);
+        head.setBounds(140,5,600,40);
         head.setFont(fp.headFont);
         head.setForeground(Color.BLACK);
         myPanel.add(head);

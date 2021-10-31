@@ -214,4 +214,3 @@ public class AddUser extends JFrame implements ActionListener,FocusListener,KeyL
         new AddUser().setVisible(true);
     }
 }
-

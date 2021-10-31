@@ -74,7 +74,6 @@ CardLayoutMgr clm;
        this.bat_first_id=bat_first_id;
        this.toss_won_id=toss_won_id;
        Conn c = new Conn();
-    //    System.out.println("AAYUSB4DB");
        try{
            //dbConnect
            String query="select team1_id,team2_id,team1_name,team2_name,venue,status,tour_id,start_date,on_strike_batsmen,non_strike_batsmen,on_strike_bat_name,non_strike_bat_name,curr_bowler,curr_bowl_name from matches where match_id="+match_id;
@@ -568,7 +567,7 @@ JButton endInnings,endMatch;
         }
 //apply ends
 //scoreUpdation
-        if(currentBattingTeamId==team2_id){   
+        if(currentBattingTeamId==team1_id){   
             Conn c=new Conn();
             try{
                 if(ae.getSource()==dotBall){
@@ -706,12 +705,12 @@ JButton endInnings,endMatch;
             String updateTeamScore="update matches set team2_runs=team2_runs+"+r+
                 " where match_id="+match_id;
             System.out.println(updateTeamScore);
-            // c.s.executeUpdate(updateTeamScore);
+            c.s.executeUpdate(updateTeamScore);
             //update runs inBowlerScoreCard
             String bowlScoreQuery="update scorecardBowling set runs_given=runs_given+"+r+" where "+
             "match_id="+match_id+" and player_id="+currBowlId;
             System.out.println(bowlScoreQuery);
-            // c.s.executeUpdate(bowlScoreQuery);
+            c.s.executeUpdate(bowlScoreQuery);
             //add Runs to byes
         }catch(Exception e){
             System.out.println("addRunsExtras");
@@ -725,12 +724,12 @@ JButton endInnings,endMatch;
             String batScoreQuery="update scorecardBatting set runs=runs+"+r+" where "+
                 "match_id="+match_id+" and player_id="+onStrikeBatId;
             System.out.println(batScoreQuery);
-            // c.s.executeUpdate(batScoreQuery);
+            c.s.executeUpdate(batScoreQuery);
     //matchScore
-            String updateTeamScore="update matches set team2_runs=team2_runs+"+r+
+            String updateTeamScore="update matches set team1_runs=team1_runs+"+r+
                     " where match_id="+match_id;
             System.out.println(updateTeamScore);
-            // c.s.executeUpdate(updateTeamScore);
+            c.s.executeUpdate(updateTeamScore);
     //update runs inBowlerScoreCard
             String bowlScoreQuery="update scorecardBowling set runs_given=runs_given+"+r+" where "+
             "match_id="+match_id+" and player_id="+currBowlId;
@@ -750,29 +749,29 @@ JButton endInnings,endMatch;
             String batScoreQuery="update scorecardBatting set balls_played=balls_played+1 where "+
             "match_id="+match_id+" and player_id="+onStrikeBatId;
             System.out.println(batScoreQuery);
-            // c.s.executeUpdate(batScoreQuery);
+            c.s.executeUpdate(batScoreQuery);
             if(ballCount!=6){
                 String updateOvers="update matches set overs_team2=overs_team2+"+(ballCount*0.1)
                 +" where match_id="+match_id;
                 System.out.println(updateOvers);
-                // c.s.executeUpdate(updateOvers);
+                c.s.executeUpdate(updateOvers);
 
                 //scorecardBOwling
                 updateOvers="update scorecardBowling set overs=overs+"+(ballCount*0.1)
                 +" where match_id="+match_id+" and player_id="+currBowlId;
                 System.out.println(updateOvers);
-                // c.s.executeUpdate(updateOvers);
+                c.s.executeUpdate(updateOvers);
             }else{
                 String updateOvers="update matches set overs_team2=overs_team2+1"
                 +" where match_id="+match_id;
                 System.out.println(updateOvers);
-                // c.s.executeUpdate(batScoreQuery);
+                c.s.executeUpdate(batScoreQuery);
 
                 //scorecardBOwling
                 updateOvers="update scorecardBowling set overs=overs+"+(ballCount*0.1)
                 +" where match_id="+match_id+" and player_id="+currBowlId;
                 System.out.println(updateOvers);
-                // c.s.executeUpdate(updateOvers);
+                c.s.executeUpdate(updateOvers);
             }
         }catch(Exception e){
             System.out.println("ballUpdaterTeam2");

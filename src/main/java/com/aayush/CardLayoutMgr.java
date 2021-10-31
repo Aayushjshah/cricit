@@ -28,13 +28,13 @@ public class CardLayoutMgr extends JFrame{
         // pcl.setLayout(cl);
         add(p1);
         CreateTournament ct = new CreateTournament(this, username);
-        AddTeam at= new AddTeam(this,2,8);
+        AddTeam at= new AddTeam(this,8,4);
         // ScoreMatch(CardLayoutMgr clm,int match_id,int bat_first_id,int toss_won_id){
         // System.out.println("AAYUS");
-        ScoreMatch sm = new ScoreMatch(this,3,3,4);
+        ScoreMatch sm = new ScoreMatch(this,12,8,9);
         // System.out.println("AAYUS");
-        AddPlayer ap = new AddPlayer(this,4);
-        MatchScheduler ms = new MatchScheduler(this,2);
+        AddPlayer ap = new AddPlayer(this,9);
+        MatchScheduler ms = new MatchScheduler(this,8);
         
         pcl.add(ct.jsp,"ct");
         pcl.add(at.jsp,"at");
@@ -81,6 +81,9 @@ public class CardLayoutMgr extends JFrame{
     public void varSize(int widthInc,int heightInc){
         pcl.setSize(pcl.getWidth()+ widthInc, pcl.getHeight()+heightInc);
         this.setSize(this.getWidth()+widthInc,this.getHeight()+heightInc);
+    }
+    public void setScoreMatch(){
+        cl.show(pcl,"sm");
     }
 
     public static void main(String[] args){

@@ -17,6 +17,7 @@ public class TossForMatch extends JFrame implements ActionListener{
     JButton team1,team2,bat,bowl;
     JLabel question2,question;
     FontPicker fp = new FontPicker();
+    CardLayoutMgr clm= new CardLayoutMgr("aa");
     TossForMatch(int match_id){
         this.match_id=match_id;
         String team1_name="",team2_name="";
@@ -86,7 +87,7 @@ bowl.setVisible(false);
         setVisible(true);
     }
     public static void main(String[] args) {
-        new TossForMatch(3);
+        new TossForMatch(12);
     }
     public void toggle(boolean q2){
         question.setVisible(!q2);
@@ -115,10 +116,26 @@ bowl.setVisible(false);
             //update to db
             String tossUpdate="update matches set toss="+toss_won+" ,bat_first="+batting_team_id+" where match_id="+match_id;
             System.out.println(tossUpdate);
+            Conn c= new Conn();
+            try{
+                c.s.executeUpdate(tossUpdate);
+            }catch(Exception ee){
+                ee.printStackTrace();
+            }
+            
+            ScoreMatch sm = new ScoreMatch(clm,match_id,batting_team_id,toss_won);
+            clm.setScoreMatch();
         }else{
             //render to Scorematch
             String tossUpdate="update matches set toss="+toss_won+" ,bat_first="+batting_team_id+" where match_id="+match_id;
-            System.out.println(tossUpdate);
+            Conn c= new Conn();
+            try{
+                c.s.executeUpdate(tossUpdate);
+            }catch(Exception ee){
+                ee.printStackTrace();
+            }
+            ScoreMatch sm = new ScoreMatch(clm,match_id,batting_team_id,toss_won);
+            clm.setScoreMatch();
         }
         
     }
